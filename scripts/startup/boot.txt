@@ -1,0 +1,28 @@
+- watch current cpu frequencies: 
+	watch -d -n 1 "grep 'cpu MHz' /proc/cpuinfo"
+- set frequencies
+	- cpu_gov_perf.sh (OR)
+	- cpupower frequency-set -g performance
+- pstate governor disable:  
+	vim /etc/default/grub
+		GRUB_CMDLINE_LINUX_DEFAULT="intel_pstate=disable idle=poll"
+	update-grub
+	sudo reboot
+- disable turbo boost:  
+	echo 0 > /sys/devices/system/cpu/cpufreq/boost
+- hyperthreading: 
+	/proj/redshift-PG0/tarfiles/startup/ht.sh
+- mount ssd:
+	- check available disks
+		sudo fdisk -l
+	- partition disk
+		sudo fdisk /dev/sdawhatever
+		- p (check partition table)
+		- n (partition)
+		- w (write partition table to disk)
+	- create a new ext4 file system (it could be dos by default)
+		mkfs.ext4 /dev/sdawhatever
+	- mount	
+		sudo mkdir /mnt/ssd
+		mount /dev/sdwhatever /mnt/ssd
+	- https://medium.com/@sh.tsang/partitioning-formatting-and-mounting-a-hard-drive-in-linux-ubuntu-18-04-324b7634d1e0
