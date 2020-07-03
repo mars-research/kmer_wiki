@@ -39,3 +39,9 @@ if ( tmp_tail >= QUEUE_SIZE ) {
 #endif
 }
 ```
+
+## Optimization ideas
+
+### Allocate BQueues locally to the producers
+
+Home node will be local to the producer at least according to ffwd it will speed things up. 
