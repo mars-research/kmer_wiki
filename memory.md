@@ -154,6 +154,31 @@ number of memory channels. cl6420 on cloudlab Clemson has all 6 channels
 populated on both the sockets, thus giving us twice the memory bandwidth of
 c240g5.
 
+### EPYC memory equation
+
+This processor supports a maximum of 8 channels of DDR4-3200 memory
+```
+3200 MT/s * 8 (bytes per transaction) * 8 (num channels)
+= 204.8 GB/s (Theoretical peak memory bandwidth)
+```
+The memory subsystem accesses DRAM memory in units of cache
+lines it is more practical to reason in terms of cache-line transactions
+per second
+
+```
+Throughput in cache lines/s = throughput / size of cache line = 204.8GB/s / 64 bytes = 3.2B cachelines/s
+```
+
+I.e., our system can support 3.2 billions of cache-line reads/writes per second (or 400 millions 
+cache-line read/writes per second per controller). 
+
+To saturate the memory subsystem we need to submit a cache-line transaction every 0.31 ns (or 2.5 ns in 
+case of a single memory controller). 
+
+On a 32 core CPU this means that the system becomes memory bound if it submits a cache-line memory 
+request every 0.31ns * 32 = 10 ns or 23 cycles on a 2.3GHz machine (with hyperthreading enabled, 
+i.e., 64 logical cores per-CPU, this number goes up to 46 cycles).
+
 ### Memory tests (cl6420)
 
 * MLC on a single core on node 0
