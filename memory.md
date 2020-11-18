@@ -179,6 +179,35 @@ On a 32 core CPU this means that the system becomes memory bound if it submits a
 request every 0.31ns * 32 = 10 ns or 23 cycles on a 2.3GHz machine (with hyperthreading enabled, 
 i.e., 64 logical cores per-CPU, this number goes up to 46 cycles).
 
+### Network vs Memory bandwidth
+
+1) On a single-core packet forwarding test (DPDK `testpmd`) on an Intel(R)
+Xeon(R) Platinum 8168 CPU @ 2.70GHz, a dual-port Mellanox ConnectX-5 100Gbps
+card achieves a forwarding rate of 77.65 Mpps with 64 byte packet size (i.e.,
+52% of theoretical bandwidth - 148.81 Mpps) and takes 33 cycles to foward a
+packet. Refer Figure 10 of the [test report](https://fast.dpdk.org/doc/perf/DPDK_20_02_Mellanox_NIC_performance_report.pdf).
+
+2) However, for a packet size of 128 bytes, the hardware achieves a forwarding
+rate of 76.65 Mpps (90% of the theoretical bandwidth). We could achieve the
+same performance by running the forwarding test for 64 byte payload on two CPU
+cores. 
+
+3) The peak memory memory bandwidth on d6515 is 204.8 GB/s. To saturate the memory
+controller bandwidth of 204.8 GB/s,  we need to bring in more data. We need at
+least 16 x 100 Gbps network interface cards.
+
+```
+204.8  (100 / 8)
+= 16.384
+```
+
+From (2), we know that by running the forwarding experiment on two CPUs would
+saturate a Mellanox ConnectX-5 100Gbps NIC. But with just two CPUs, we cannot
+saturate the memory controller's bandwidth. However, imagine if we can assemble
+a machine with 16 x 100Gbps Mellanox ConnectX-5, we believe that by allocating
+two CPU cores to each NIC, we can saturate both the network and memory
+bandwidth (assuming linear scaling).
+
 ### Memory tests (cl6420)
 
 * MLC on a single core on node 0
