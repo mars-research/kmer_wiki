@@ -1,0 +1,49 @@
+
+CPHASH: A Cache-Partitioned Hash Table
+Zviad Metreveli, Nickolai Zeldovich, and M. Frans Kaashoek
+MIT CSAIL
+https://people.csail.mit.edu/nickolai/papers/metreveli-cphash-tr.pdf
+
+
+Concurrent Log-Structured Memory for Many-Core Key-Value Stores
+http://www.vldb.org/pvldb/vol11/p458-merritt.pdf
+
+Anna: A KVS For Any Scale Chenggang Wu, Jose M. Faleiro, Yihan Lin
+Joseph M. Hellerstein
+https://dsf.berkeley.edu/jmh/papers/anna_ieee18.pdf
+
+Achieving High Throughput and Elasticity in a Larger-than-Memory Store
+Chinmay Kulkarni∗ Badrish Chandramouli† Ryan Stutsman∗
+University of Utah †Microsoft Research
+https://arxiv.org/pdf/2006.03206.pdf
+
+FULL-KV: Flexible and Ultra-Low-Latency In-Memory Key-Value Store System Design on CPU-FPGA
+https://ieeexplore.ieee.org/abstract/document/8999599?casa_token=tSJxr5VvHvMAAAAA:gPKUQMnes-kH_FHzh1EZtHJjpAQsIBNoSDPBHNaQvP576Ta-iWscH0-8FXgXw3BUnIOUEV7Wrg
+
+https://www.usenix.org/system/files/nsdi19-didona.pdf
+
+High availability in cheap distributed key value storage
+https://dl.acm.org/doi/pdf/10.1145/3419111.3421290
+
+https://www.cs.cmu.edu/~kaminsky/
+
+Tucana: Design and implementation of a fast and efficient scale-up
+key-value store
+https://www.usenix.org/system/files/conference/atc16/atc16_paper-papagiannis.pdf
+
+KVell: the Design and Implementation of a
+Fast Persistent Key-Value Store
+https://dl.acm.org/doi/pdf/10.1145/3341301.3359628
+
+Write-Optimized and High-Performance Hashing
+Index Scheme for Persistent Memory
+https://www.usenix.org/system/files/osdi18-zuo.pdf
+
+Be Fast, Cheap and in Control with SwitchKV
+https://www.usenix.org/conference/nsdi16/technical-sessions/presentation/li-xiaozhou
+
+Architecting to Achieve a Billion Requests Per Second Throughput
+on a Single Key-Value Store Server Platform
+https://www.pdl.cmu.edu/PDL-FTP/Storage/p476-li.pdf
+
+https://www.sydney.edu.au/engineering/about/our-people/academic-staff/willy-zwaenepoel.html
