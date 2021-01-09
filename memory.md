@@ -15,18 +15,26 @@ ALL Reads        :      12784.90
 1:1 Reads-Writes :      23189.84
 Stream-triad like:      12281.78
 ```
-cycles per cacheline (64B)
+We can compute how meny cycles are required to transfer one cacheline (64 bytes)
 
 ```
+Throughput in cache-lines = Throughput / 64 bytes = 12784 MB/s / 64 = 199 M cache-line transactions / s 
+
+XXX: AB not sure what is below: --> 
 64 / (12.7 / 2.2)
 11.08
 ```
+
+XXX: AB: not sure why we need above test? One core test doesn't tell us anything
+
 c2420g5 has: https://ark.intel.com/content/www/us/en/ark/products/123550/intel-xeon-silver-4114-processor-13-75m-cache-2-20-ghz.html
 This processor supports a maximum of 6 channels of DDR4-2400 memory type.
+
 ```
 2400 MT/s * 8 (bytes per transaction) * 6 (num channels)
 = 115.2 GB/s (Theoretical peak memory bandwidth)
 ```
+
 On a 2 socket machine the above number should be doubled.
 
 However, in our machine, only 3 channels are populated per socket, that puts at
@@ -91,7 +99,7 @@ run only on single numa node utilizing 3 memory channels. Let's compute how
 many cycles it would take to access a cacheline.
 
 ```
-Time to access a cacheline (with 6 channels) = 1/(bandwidth / cacheline_size)
+Time to saturate the memory subsystem with cacheline transactions (with 6 channels) = 1/(bandwidth / cacheline_size)
 1/((87.6 *1e9) / 64)
 7.30593607305936e-10
 
@@ -104,10 +112,11 @@ Cycles to access a cacheline = Time to access a cacheline / cycle_time
 3.2
 ```
 
-On this machine, it would take us 0.73 nanoseconds to access a cacheline if all
-6 channels are in operation and 1.46 ns (or 3.2 cycles) if we use 3 memory channels.
+On this machine, we have to trigger a cache-line transaction every 0.73 nanoseconds 
+(1.6 cycles) to keep all 6 channels saturated. On one socket (3 memory channels) this number goes up to 
+ 1.46 ns (or 3.2 cycles).
 
-If we use N threads, t0 to tN-1, inorder to saturate the memory controller,
+If we use N threads, in order to saturate the memory controller,
 each thread would have to generate a request every (N * cycles to access a
 cacheline).
 
@@ -116,6 +125,8 @@ For 10 threads,
 10 * 3.2
 32 cycles
 ```
+
+Similar for 20 threads of one socket we have 64 cycles to generate a memory transaction. 
 
 In our prefetch test, we first read a cacheline and write it too. In a steady
 state, this written cacheline would eventually be written back to memory. This
