@@ -424,6 +424,36 @@ Thread 15: 910853378 cycles (414.024275 ms) for 16777216 insertions (54 cycles/i
 Average  : 916978574 cycles (416.808455 ms) for 16777216 insertions (54 cycles/insert) (fill = 25 %)
 ```
 
+#### mlc tests on random reads
+
+We ran mlc max bandwidth test with random read (`-U`) on all cores on numa node 0
+```
+./mlc --max_bandwidth -U -m0x55555555 -e
+```
+
+We observe,
+
+```
+sudo ./mlc --max_bandwidth -m0x55555555 -U -e
+Intel(R) Memory Latency Checker - v3.9
+Command line parameters: --max_bandwidth -m0x55555555 -U -e
+
+Using buffer size of 183.105MiB/thread for reads and an additional 183.105MiB/thread for writes
+
+Measuring Maximum Memory Bandwidths for the system
+Will take several minutes to complete as multiple injection rates will be tried to get the best bandwidth
+Bandwidths are in MB/sec (1 MB/sec = 1,000,000 Bytes/sec)
+Using all the threads from each core if Hyper-threading is enabled
+Using traffic with the following read-write ratios
+ALL Reads        :      85431.39
+3:1 Reads-Writes :      98182.03
+2:1 Reads-Writes :      81307.31
+1:1 Reads-Writes :      76375.24
+Stream-triad like:      89428.90
+```
+
+We collected a vtune profile to confirm the same and we see the same on VTune memory bandwidth profile.
+
 ### Links
 * [Understanding memory bandwidth](https://lenovopress.com/lp0501.pdf)
 
