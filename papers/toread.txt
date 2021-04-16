@@ -1,3 +1,6 @@
+Squeakr: an exact and approximate k-mer counting system (VMWare guy)
+https://academic.oup.com/bioinformatics/article/34/4/568/4386917
+
 Faster
 https://www.microsoft.com/en-us/research/project/faster/#!publications
 
