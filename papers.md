@@ -1,3 +1,7 @@
+* 2019 survey paper: [A benchmark study of k-mer counting methods for high-throughput sequencing](https://academic.oup.com/gigascience/article/7/12/giy125/5140149)
+* 2021 ht kmer: [CHTKC: a robust and efficient k-mer counting algorithm based on a lock-free chaining hash table](https://academic.oup.com/bib/article/22/3/bbaa063/5841329)
+* 2017 survey: [Next-generation sequencing: big datameets high performance computing](https://reader.elsevier.com/reader/sd/pii/S1359644617300582)
+
 * Jellyfish
     * [Homepage](https://www.psc.edu/user-resources/software/jellyfish)
     * [V1 paper](https://academic.oup.com/bioinformatics/article/27/6/764/234905)
