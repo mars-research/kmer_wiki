@@ -13,3 +13,4 @@
 * [Non-blocking hashtables with open addressing](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-639.pdf) (Jellyfish hashtable)
 
 * [Performance extraction and suitability analysis of multi- and many-core architectures for next generation sequencing secondary analysis](https://dl.acm.org/doi/abs/10.1145/3243176.3243197?casa_token=5BhKH0oWtQEAAAAA:NY76jrngG5ZOl9CNREBx7j11v0wD_T1DYEqcXtzlOCgaoROaqM5fNFdh_VsTG_rNRD2-169vbGL0mQ) -- Uses Kemerind for alignment on Xeon and Xeon Phi
+* [Multi-Core, Main-Memory Joins: Sort vs. Hash Revisited](http://www.vldb.org/pvldb/vol7/p85-balkesen.pdf)
