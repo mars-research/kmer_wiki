@@ -69,8 +69,10 @@
 
 # TODOs
 ---
-  [x] perform raw section queue test - no insertions.
-  [x] investigate why zipfian vector read takes 40 cycles
+  - [x] perform raw section queue test - no insertions
+
+  - [x] investigate why zipfian vector read takes 40 cycles
+
   - investigate optimal prefetch distance for casht++ and partitioned (small HT)
   - investigate bi-modality on casht++ (64 threads)
   - Compare SIMD vs branched
