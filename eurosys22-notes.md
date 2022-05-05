@@ -45,13 +45,39 @@
   Number of insertions per sec (Mops/s): 2248.649
   ```
 
+# 2022-05-05
+----
+* Raw section queue test with no insertions averages at ~25 cycles for equal
+  number of prod-cons.
+
+* Zipfian insertions take an additional 40 cycles of overhead compared to
+  monotonic. It turns out that zipfian distribution incurs a lot of reprobes
+  compared to a monotonic counter (where the reprobe count is 0).
+  ```
+  # casht++ - zipfian
+  2022-05-05 14:53:42.048 INFO  [1142848] [kmercounter::ZipfianTest::run@134] Reprobes 591788 soft_reprobes 1775456
+  Thread  0: 156681738 cycles (71.218974 ms) for 1572864 insertions (99 cycles/insert) | (0 cycles/enqueue)
+  Average  : 156681738 cycles (71.218974 ms) for 1572864 insertions (99 cycles/insert) (fill = 75 %)
+  # casht++ - monotonic
+  reprobes 0 soft_reprobes 0
+  ```
+  - For inserting 1572864 elements, we reprobe (591788 + 1775456) times. i.e., 1.5 reprobes per insertion.
+  ```
+  >>> (591788 + 1775456) / 1572864
+  1.505053202311198
+  ```
+
 # TODOs
 ---
-  - perform raw section queue test - no insertions.
-  - investigate why zipfian vector read takes 40 cycles
+  [x] perform raw section queue test - no insertions.
+  [x] investigate why zipfian vector read takes 40 cycles
   - investigate optimal prefetch distance for casht++ and partitioned (small HT)
   - investigate bi-modality on casht++ (64 threads)
   - Compare SIMD vs branched
     - validate SIMD configuration
+    - on both small and large HT
   - fix vtune for small-ht measurements
     - vtune doesn't show queue overhead
+  - Design an experiment to measure the overhead of prefetch engine
+    - Measure with and without prefetch engine and compute the difference on a single-threaded experiment
+    - ideally to find out why 1.5 reprobes take 40 additional cycles
