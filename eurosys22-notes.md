@@ -227,13 +227,13 @@
   - For insertions,
     - Cashtpp + prefetch-engine
       ```
-      ./kvstore --mode 11 --ht-type 3 --ht-size 2097152 --numa-split 1 --num-threads 1 --no-prefetch 0
-      Average  : 121295182 cycles (55.134175 ms) for 1572864 insertions (77 cycles/insert) (fill = 75 %)
+      ./kvstore --mode 11 --ht-type 3 --ht-size 2048 --numa-split 1 --insert-factor 300 --no-prefetch 0
+      Average  : 13326252 cycles (6.057387 ms) for 230400 insertions (57 cycles/insert) (fill = 75 %)
       ```
     - Cashtpp + no-prefetch
       ```
-      ./kvstore --mode 11 --ht-type 3 --ht-size 2097152 --numa-split 1 --num-threads 1 --no-prefetch 1
-      Average  : 266092774 cycles (120.951265 ms) for 1572864 insertions (169 cycles/insert) (fill = 75 %)
+      ./kvstore --mode 11 --ht-type 3 --ht-size 2048  --numa-split 1 --no-prefetch 1 --insert-factor 300
+      Average  : 11597000 cycles (5.271364 ms) for 230400 insertions (50 cycles/insert) (fill = 75 %)
       ```
 
 # TODOs
