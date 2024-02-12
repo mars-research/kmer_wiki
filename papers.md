@@ -14,3 +14,11 @@
 
 * [Performance extraction and suitability analysis of multi- and many-core architectures for next generation sequencing secondary analysis](https://dl.acm.org/doi/abs/10.1145/3243176.3243197?casa_token=5BhKH0oWtQEAAAAA:NY76jrngG5ZOl9CNREBx7j11v0wD_T1DYEqcXtzlOCgaoROaqM5fNFdh_VsTG_rNRD2-169vbGL0mQ) -- Uses Kemerind for alignment on Xeon and Xeon Phi
 * [Multi-Core, Main-Memory Joins: Sort vs. Hash Revisited](http://www.vldb.org/pvldb/vol7/p85-balkesen.pdf)
+
+
+-- Probalistic
+* 2017 [Squeakr: An Exact and Approximate k-mer count System] (https://academic.oup.com/bioinformatics/article/34/4/568/4386917) 
+* 2023 April [KmerCo: KmerCo: A lightweight K-mer counting technique with a tiny memory footprint] (
+https://arxiv.org/abs/2305.07545 )
+* 2023 [KCOSS: an ultra-fast k-mer counter for assembled genome analysis] (https://academic.oup.com/bioinformatics/article/38/4/933/6443080)
+
